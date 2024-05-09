@@ -1,0 +1,170 @@
+:root {
+  --bg-color: #fff;
+  --bg-light: #f1f1f1;
+  --brand-color: #333;
+  --text-color: #555;
+  --headers-color: #333;
+  --text-light: #bbb;
+  --sidebar-bg: #2d2d2d;
+  --duration-300: 300ms;
+  --image-filter: brightness(1);
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #112042;
+  --bg-light: #2b4173;
+  --brand-color: #3f83ba;
+  --text-color: #787878;
+  --headers-color: #a7a7a7;
+  --text-light: #26407c;
+  --sidebar-bg: #030b1d;
+  --image-filter: brightness(0.7);
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+  font-size: 20px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  background-color: var(--bg-color);
+  word-spacing: 3px;
+  line-height: 1.8;
+}
+
+p {
+  color: var(--text-color);
+  font-size: 20px;
+  margin-bottom: 1.2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1rem;
+  color: var(--headers-color);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: underline;
+  color: var(--brand-color);
+  transition-duration: var(--duration-300);
+}
+
+a:hover {
+  color: var(--text-color);
+}
+
+img {
+  max-width: 100%;
+  filter: var(--image-filter);
+}
+
+button {
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  border: 1px solid #1d1c1d4d;
+  font-weight: 700;
+  background: #fff;
+  padding: 0 12px 1px;
+  font-size: 15px;
+  border-radius: 4px;
+  color: rgb(29, 28, 29);
+  height: 36px;
+  transition: all 80ms linear;
+}
+
+button:hover {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 8%);
+  background: rgba(248, 248, 248, 1);
+}
+
+ul,
+ol,
+dl,
+table,
+pre {
+  color: var(--text-color);
+}
+
+main,
+.sidebar {
+  transition-duration: 500ms;
+}
+
+pre {
+  white-space: pre-line;
+}
+
+/* Tables */
+table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #e5e5e5;
+}
+
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+  background-color: #f9f9f9;
+}
+
+hr {
+  position: relative;
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #fff;
+}
+
+.container {
+  max-width: 45rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@media screen and (max-width: 800px) {
+  body, p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
