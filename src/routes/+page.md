@@ -13,11 +13,11 @@ description: "A minimal Sveltekit theme with a sidebar."
   
   export let data;
 
-  $: ({ posts } = data);
+  $: ({ plates } = data);
 </script>
 
-{#each $paginatedPosts as post}
-  <PostItem {post} />
+{#each $paginatedPosts as plate}
+  <PostItem {plate} />
 {/each}
 
-<Pagination items={posts} itemsPerPage={2} />
+<Pagination items={plates} itemsPerPage={3} />

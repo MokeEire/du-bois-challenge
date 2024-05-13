@@ -1,7 +1,7 @@
 export const load = async ({ parent }) => {
-  const { posts } = await parent();
+  const { plates } = await parent();
 
   return {
-    posts,
+    plates,
   };
 };

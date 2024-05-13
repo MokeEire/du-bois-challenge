@@ -1,11 +1,11 @@
 <script>
   import Categories from "$lib/components/Categories.svelte";
-  export let post;
-  $: ({ title, description, slug, categories, image } = post);
+  export let plate;
+  $: ({ title, description, slug, categories, image } = plate);
 </script>
 
 <div class="post-item">
-  <a data-sveltekit-prefetch class="title" href="/posts/{slug}"
+  <a data-sveltekit-prefetch class="title" href="/plates/{slug}"
     ><h2>{title}</h2></a
   >
   <img width="800" height="300" src={image} alt={title} />

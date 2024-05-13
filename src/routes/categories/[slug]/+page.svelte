@@ -2,12 +2,12 @@
   import PostItem from "$lib/components/PostItem.svelte";
   import { siteTitle } from "$lib/constants";
   export let data;
-  const { posts, title } = data;
+  const { plates, title } = data;
 </script>
 
 <h1>Category: {title}</h1>
-{#each posts as post}
-  <PostItem {post} />
+{#each plates as plate}
+  <PostItem {plate} />
 {/each}
 
 <svelte:head>

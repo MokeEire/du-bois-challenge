@@ -7,16 +7,16 @@ description: All categories in one place
 <script>
   import PostItem from "$lib/components/PostItem.svelte";
   export let data;
-  const { groupedPosts } = data;
+  const { groupedPlates } = data;
 </script>
 
-{#each groupedPosts as [category, posts]}
+{#each groupedPlates as [category, plates]}
 
   <div class="category-container">
     <h2>{category}:</h2>
     <div class="grid">
-      {#each posts as post}
-        <PostItem {post} />
+      {#each plates as plate}
+        <PostItem {plate} />
       {/each}
     </div>
   </div>

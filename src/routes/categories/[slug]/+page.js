@@ -1,13 +1,13 @@
 export const load = async ({ parent, params }) => {
   const { slug } = params;
-  const { posts } = await parent();
+  const { plates } = await parent();
   const title = slug;
-  const filteredPosts = posts.filter((post) => {
-    return post.categories.includes(slug);
+  const filteredPlates = plates.filter((plate) => {
+    return plate.categories.includes(slug);
   });
 
   return {
-    posts: filteredPosts,
+    plates: filteredPlates,
     title,
   };
 };
