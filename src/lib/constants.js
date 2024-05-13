@@ -4,10 +4,6 @@ export const menu = [
     url: "/",
   },
   {
-    title: "Categories",
-    url: "/categories",
-  },
-  {
     title: "About",
     url: "/about",
   },
@@ -17,13 +13,13 @@ export const menu = [
   },
   {
     title: "Github",
-    url: "https://github.com/sharu725/yuyutsu",
+    url: "https://github.com/MokeEire/du-bois-challenge",
     target: "_blank",
   },
 ];
 
-export const siteTitle = "Yuyutsu";
-export const siteDescription = "A minimal Sveltekit theme with a sidebar.";
+export const siteTitle = "Du Bois Challenge";
+export const siteDescription = "My work for the Du Bois Visualization Challenge.";
 
 export const footerText =
   /* <Current Year> is already prefixed */ "All rights reserved";
