@@ -40,7 +40,6 @@
 
   let georgiaCoords = [-81.0753, 32.0967];
 
-  let tooltipData;
 
   import Globe from "./Globe.svelte";
   import Clip from "./Clip.svelte";
@@ -51,8 +50,8 @@
   <svg class="globes" {width} {height}>
     <!-- Globe -->
     <!-- svelte-ignore a11y-click-events-have-key-events --->
-    <Globe cx={width * 0.25} {height} {tooltipData} />
-    <Globe cx={width * 0.75} {height} {tooltipData} />
+    <Globe cx={width * 0.25} {height} />
+    <Globe cx={width * 0.75} {height} />
     {#if clip}
       <Clip id="globe-shape" {width} {height} />
     {/if}
