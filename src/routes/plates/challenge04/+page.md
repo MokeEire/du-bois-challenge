@@ -49,15 +49,7 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
     </p>
     </div>
 
-    <style>
-  blockquote {
-      font-size: 0.9rem;
-  border-left: 12px solid var(--brand-color);
-  border-radius: 2px;
-  margin: 1rem 0 1rem;
-  background-color: var(--body-font);
-  padding: 8px 0 8px 16px;
-  }
+<style>
 
   .plate {
     margin-bottom: 10vh;
