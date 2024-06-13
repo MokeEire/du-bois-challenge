@@ -4,7 +4,7 @@
   import { siteTitle } from "$lib/constants";
 
   export let data;
-  export let title, description, date, categories, edit, image;
+  export let title, description, date, challenge, plateNum, edit, image;
 
   const seo = {
     title: `${title} | ${siteTitle}`,
@@ -17,7 +17,7 @@
 
 <Seo {...seo} />
 
-<h1>{title}</h1>
+<h1>Challenge #{challenge}: {title} (Plate {plateNum})</h1>
 <p class="date">{date}</p>
 <slot />
 <p class="edit"><a href={edit} target="_blank">Edit this page</a></p>
