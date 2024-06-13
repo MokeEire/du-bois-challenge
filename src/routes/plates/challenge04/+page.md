@@ -1,6 +1,8 @@
 ---
 layout: plate
-title: "Challenge #4: The Georgia Negro (Plate 1)"
+challenge: 4
+title: "The Georgia Negro"
+plateNum: 
 description: "A map of transatlantic slave trade routes."
 categories:
   - dataviz
