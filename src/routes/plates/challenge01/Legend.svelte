@@ -23,6 +23,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        flex-grow: 3;
         height: 50%;
         justify-content: space-around;
         padding: 16px 0;

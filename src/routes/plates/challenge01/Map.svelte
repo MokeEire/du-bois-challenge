@@ -56,15 +56,11 @@
       </svg>
     </div>
     <!-- Top right legend -->
-    <div class="legend">
-      <Legend {colourScale} indexStart={4} indexStop={7} />
-    </div>
+    <Legend {colourScale} indexStart={4} indexStop={7} />
   </div>
   <div class="row">
     <!-- Bottom left legend -->
-  <div class="legend">
     <Legend {colourScale} indexStart={0} indexStop={4} />
-  </div>
   <div class="chart">
     <h4>1880</h4>
     <svg width={width / 2.5} height={height/3}>
@@ -93,8 +89,6 @@
     margin: auto;
     display: flex;
     flex-flow: row wrap;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     gap: 10px;
   }
 
@@ -109,10 +103,7 @@
     flex-direction: column;
     flex-grow: 1;
     display: flex;
-  }
-
-  .legend {
-    padding: 16px 0;
+    align-items: center;
   }
 
   .left {
@@ -122,6 +113,5 @@
   svg {
     overflow: hidden;
     margin: 4px 0;
-    border: 1px solid black;
   }
 </style>
