@@ -12,7 +12,7 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
 ---
 
 <script>
-  import Map from './Map.svelte'
+  import Chart from './Chart.svelte'
 </script>
 
 
@@ -21,34 +21,27 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
   <div class="chart-title">
     <h1>Negro Population of Georgia by Counties.</h1>
   </div>
-  <Map />
+  <Chart />
 </div>
 
 <style>
-  blockquote {
-      font-size: 0.9rem;
-  border-left: 12px solid var(--brand-color);
-  border-radius: 2px;
-  margin: 1rem 0 1rem;
-  background-color: var(--body-font);
-  padding: 8px 0 8px 16px;
-  }
+  
 
   .plate {
-    margin-bottom: 10vh;
     background: #d2b48c;
     padding: 4px 16px;
     border-radius: 6px;
     text-transform: uppercase;
     text-align: center;
     font-family: "Public Sans", sans-serif;
+    margin: 1vh auto 10vh auto;
     opacity: 0.9;
+    width: 75%;
+    padding-bottom: 2rem;
   }
 
   .chart-title {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 5vh;
+    margin-bottom: 1rem;
     line-height: 1.2;
     font-family: "Public Sans", sans-serif;
     color: black;
@@ -87,25 +80,13 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
     margin-bottom: 1rem;
   }
 
-  .legend {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
-    margin: 0 auto;
-    width: fit-content;
-    text-align: left;
-    opacity: 0.75;
-    font-size: 1.1rem;
-  }
-
-  .legend span {
-    font-weight: 100;
-  }
-
-  .legend-item {
-  }
-
   .caption {
     text-align: right;
+  }
+
+  @media screen and (max-width: 800px) {
+    .plate {
+      width: 100%;
+    }
   }
 </style>
