@@ -12,16 +12,16 @@
   import Legend from "./Legend.svelte";
 
   let width = 300;
-  $: height = width*1.5;
+  $: height = width*1.25;
   let countiesRewind = rewind(georgiaCounties, { reverse: true });
   let counties = georgiaCounties.features;
   let counties2 = georgiaCounties.features;
 
   // Projection function
   $: projection = geoAlbers()
-    .scale(5000 - (871 - width)*5)
-    .rotate([79.1+(871-width)/600, 10.9-(871-width)/600])
-    .translate([width / 2, height / 2]); // Where the projection is centered
+    .scale(3900 - (871 - width)*3)
+    .rotate([79.1+(871-width)/200, 11.75-(871-width)/200])
+    .translate([width / 2.5, height / 2]); // Where the projection is centered
   $: console.log(path.bounds(counties))
 
   // Path generator
@@ -39,7 +39,7 @@
 <div class="chart-container" bind:clientWidth={width}>
   <div class="row">
     <div class="chart">
-      <h4>1870</h4>
+      <h6 class="map-year">1870</h6>
       <svg class="left" width={width / 2.5} height={height/3}>
         <!-- Counties 1870-->
         {#each counties as county}
@@ -60,10 +60,10 @@
   </div>
   <div class="row">
     <!-- Bottom left legend -->
-    <Legend {colourScale} indexStart={0} indexStop={4} />
+    <Legend {colourScale} indexStart={0} indexStop={4} right={true}/>
   <div class="chart">
-    <h4>1880</h4>
-    <svg width={width / 2.5} height={height/3}>
+    <h6 class="map-year">1880</h6>
+    <svg class="right" width={width / 2.5} height={height/3}>
       <!-- Counties 1880-->
       {#each counties as county}
         <!-- svelte-ignore a11y-click-events-have-key-events --->
@@ -97,21 +97,31 @@
     flex-flow: row nowrap;
     gap: 10px;
     width: 100%;
+    justify-content: center;
   }
 
   .chart {
     flex-direction: column;
-    flex-grow: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  .map-year {
+    margin-top: 0;
+    position: relative;
+    left: 25%;
   }
 
   .left {
     align-self: flex-end;
   }
 
-  svg {
-    overflow: hidden;
-    margin: 4px 0;
+  .right {
+    align-self: flex-start;
   }
+
+  svg {
+    overflow: visible;
+  }
+
 </style>
