@@ -3,10 +3,10 @@ layout: plate
 challenge: 1
 title: "Negro Population of Georgia by Counties, 1870-1880"
 plateNum: 6
-description: "A map of transatlantic slave trade routes."
+description: "A map of Georgia's changing black population in the late 1800s."
 categories:
   - dataviz
-date: 2024-04-23
+date: 2024-06-14
 published: true
 original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challenge/2024/challenge01/original-plate-06.jpg
 ---
