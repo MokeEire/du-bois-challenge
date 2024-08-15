@@ -11,7 +11,7 @@
 
 <style>
   .header-container {
-    border-bottom: 1px solid var(--bg-light);
+    border-bottom: 1px solid var(--db-black);
   }
   header h1 {
     font-size: 2rem;

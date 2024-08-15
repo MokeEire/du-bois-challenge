@@ -5,6 +5,7 @@
   --db-black: #000000;
   --db-brown: #654321;
   --db-tan: #d2b48c;
+  --db-tan-light: #d2b48cb8;
   --db-gold: #ffd700;
   --db-pink: #ffc0cb;
   --db-crimson: #dc143c;
@@ -38,13 +39,13 @@ body {
   font-size: 20px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  background-color: var(--bg-color);
+  background-color: var(--db-tan-light);
   word-spacing: 3px;
   line-height: 1.8;
 }
 
 p {
-  color: var(--text-color);
+  color: var(--db-black);
   font-size: 16px;
 }
 
@@ -59,7 +60,7 @@ h4,
 h5,
 h6 {
   margin-top: 1rem;
-  color: var(--headers-color);
+  color: var(--db-black);
 }
 
 h1 {
@@ -88,12 +89,12 @@ h6 {
 
 a {
   text-decoration: underline;
-  color: var(--brand-color);
+  color: var(--db-blue);
   transition-duration: var(--duration-300);
 }
 
 a:hover {
-  color: var(--text-color);
+  color: var(--db-black);
 }
 
 img {
@@ -126,7 +127,7 @@ ol,
 dl,
 table,
 pre {
-  color: var(--text-color);
+  color: var(--db-black);
 }
 
 main,
@@ -159,10 +160,10 @@ tbody tr:nth-child(odd) th {
 
 hr {
   position: relative;
-  margin: 1.5rem 0;
+  margin: 1.5rem 0.5rem;
   border: 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #fff;
+  border-top: 1px solid var(--db-brown);
+  border-bottom: 1px solid var(--db-brown);
 }
 
 .container {
