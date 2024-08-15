@@ -8,10 +8,6 @@ export const menu = [
     url: "/about",
   },
   {
-    title: "Contact",
-    url: "/contact",
-  },
-  {
     title: "Github",
     url: "https://github.com/MokeEire/du-bois-challenge",
     target: "_blank",
