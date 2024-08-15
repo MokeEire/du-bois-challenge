@@ -15,6 +15,7 @@ export const menu = [
 ];
 
 export const siteTitle = "Du Bois Challenge";
+export const repoName = "MokeEire/du-bois-challenge"
 export const siteDescription = "My work for the Du Bois Visualization Challenge.";
 
 export const footerText =

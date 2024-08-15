@@ -1,9 +1,10 @@
 <script>
   import Seo from "$lib/components/Seo.svelte";
-  import Categories from "$lib/components/Categories.svelte";
   import { siteTitle } from "$lib/constants";
   import { base } from "$app/paths";
   import {format} from "date-fns";
+  import { Utterances, utterancesTheme } from "@codewithshin/svelte-utterances";
+  import { repoName } from "$lib/constants";
 
   export let data;
   export let title,
@@ -12,8 +13,9 @@
     challenge,
     plateNum,
     edit,
-    image,
-    original;
+    image;
+
+  const theme = 'github-light';
 
   const seo = {
     title: `${title} | ${siteTitle}`,
@@ -44,16 +46,21 @@
   awareness and compassion, especially for white people like myself. If you have any
   thoughts or feedback on how to better present this work, <a href="../contact">please reach out</a>.
 </blockquote>
+
 <slot />
 
-    <a class="padding-bottom border-top" href="/" sveltekit:prefetch>&#8592; Back to all plates </a>
+<hr>
+
+<Utterances reponame={ repoName } {theme}/>
+
+<a class="return padding-bottom border-top" href="/" sveltekit:prefetch>&#8592; Back to all plates </a>
 <p class="edit"><a href={edit} target="_blank">Edit this page</a></p>
 
 <style>
 
   .challenge {
     font-size: 0.95rem;
-    color: var(--text-color);
+    color: var(--db-brown);
     opacity: 0.8;
     margin-bottom: 0;
     text-decoration: none;
@@ -70,23 +77,21 @@
   }
   .date {
     font-size: 1rem;
-    color: var(--text-color);
+    color: var(--db-brown);
     opacity: 0.8;
     margin-bottom: 0.5rem;
   }
 
-  .original {
-    font-size: 1rem;
-  }
   .edit {
     display: flex;
   }
   .edit a {
     margin-left: auto;
   }
-  img {
-    object-fit: cover;
-    object-position: center;
+
+  .return {
+    display: flex;
+    margin: 1rem 0 0;
   }
 
   .border-top {
@@ -101,10 +106,10 @@
 
   blockquote {
     font-size: 0.9rem;
-    border-left: 12px solid var(--brand-color);
+    border-left: 12px solid var(--db-crimson);
     border-radius: 2px;
     margin: 1rem 0 1rem;
-    background-color: var(--body-font);
+    background-color: transparent;
     padding: 8px 0 8px 16px;
   }
 
@@ -112,10 +117,6 @@
     h1 {
       font-size: 2rem;
     }
-    img {
-      height: 200px;
-      object-fit: contain;
-      object-position: center;
-    }
+
   }
 </style>
