@@ -49,6 +49,8 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
     </p>
     </div>
 
+<a class="original" href={original}>View the original</a>
+
 <style>
 
   .plate {
