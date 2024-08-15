@@ -4,7 +4,7 @@
   export let indexStop = colourScale.domain().length;
   export let right = false;
 
-  console.log(colourScale.domain());
+  //console.log(colourScale.domain());
   let indexedArray = colourScale.domain().slice(indexStart, indexStop);
 
   function labelLegend(value) {
@@ -20,7 +20,6 @@
     return mapper[value];
   }
 
-  console.log(indexedArray);
 </script>
 
 <div class="legend" class:right>
@@ -57,5 +56,7 @@
     display: inline-block;
     border: 1px solid black;
     border-radius: 50%;
+    vertical-align: middle;
+    opacity: .9;
   }
 </style>
