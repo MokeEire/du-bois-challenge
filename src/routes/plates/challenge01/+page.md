@@ -31,7 +31,7 @@ This plate maps the black population of Georgia's counties in 1870 and 1880 and 
 The population size in each county is denoted with colour and the legend is split between the two rows. 
 To make the plate, I used two rows containing a map and legend (each legend only shows one half the items on the colour scale). 
 I used photoshop to remove the content but keep the old paper as the background. 
-This did feel like cheating from a recreation standpoint, but it does look nicer than the CSS solution in <a href="/challenge04/">plate #1</a>.
+This did feel like cheating from a recreation standpoint, but it does look nicer than the CSS solution in <a href="/plates/challenge04/">plate #1</a>.
 The map is created in an SVG element using a projection function and path generator from `d3-geo`.
 Using Svelte's `{#each}` block, I create a path element for each county that sets the fill using a colour scale from `d3-scale`.
 The legend is created with the `Legend` component which takes the colour scale, and a starting and stopping index to slice the legend to mimic the original piece.
@@ -81,34 +81,8 @@ I would also like to recreate the marker line texture that is present in Du Bois
     margin: 1rem 0 0;
   }
 
-  .chart-title span {
-    font-weight: 600;
-  }
-
   .original {
     font-size: 1rem;
-  }
-
-  .chart-desc {
-    margin: 1.5rem 0 2rem;
-  }
-
-  .chart-desc p {
-    font-weight: 100;
-    word-wrap: break-word;
-    line-height: 1.25;
-    hyphens: auto;
-  }
-
-  .chart-desc :not(p:last-of-type) {
-    text-align: left;
-    letter-spacing: 1.25px;
-    text-indent: 15%;
-    margin-bottom: 1rem;
-  }
-
-  .caption {
-    text-align: right;
   }
 
   @media screen and (max-width: 800px) {
