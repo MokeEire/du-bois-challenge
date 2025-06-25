@@ -1,4 +1,5 @@
 <script>
+  import { fade } from "svelte/transition"; // Import fade transition
   import Tooltip from "./Tooltip.svelte"; // Import the Tooltip component
   // Import necessary D3 functions
   import { scaleLinear } from "d3-scale";
@@ -50,6 +51,7 @@
         stroke-opacity=".5"
         opacity={hoveredData ? (hoveredData == d ? 1 : 0.45) : 0.85}
         tabindex="0"
+        in:fade
         on:mouseover={() => {
           hoveredData = d;
         }}
@@ -91,17 +93,28 @@
           dy="9"
           opacity=".9">{d.Land.toLocaleString()}</text
         >
+      {:else if hoveredData == d}
+        <text
+          class="land"
+          x={xScale(d.Land / 2)}
+          y={yScale(i)}
+          dy="9"
+          opacity=".9"
+          in:fade={{ duration: 500 }}
+          >{d.Land.toLocaleString("en-US", { maximumFractionDigits: 0 })}</text
+        >
       {/if}
     {/each}
   </svg>
-  {#if hoveredData}
-    <Tooltip {hoveredData} {xScale} {yScale} />
-  {/if}
 </div>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
+  rect {
+    transition: opacity 500ms ease;
+    padding: 2px;
+  }
   .year {
     font-weight: 100;
     text-anchor: end;
