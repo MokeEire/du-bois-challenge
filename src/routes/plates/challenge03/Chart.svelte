@@ -7,7 +7,7 @@
   $: csvData = data?.csvData || [];
   //console.log('Raw CSV Data:', data); // Log the entire data object to see its structure
 
-  console.log("CSV Data:", data?.csvData); // This should now work
+  //console.log("CSV Data:", data?.csvData); // This should now work
 
   // Convert string values to numbers for visualization
   $: processedData = csvData.map((d) => ({
@@ -15,7 +15,7 @@
     Land: +d.Land, // Convert string to number
   }));
 
-  $: console.log("Processed Data:", processedData);
+  //$: console.log("Processed Data:", processedData);
 
   let width = 300;
   $: height = width * 1.2;
