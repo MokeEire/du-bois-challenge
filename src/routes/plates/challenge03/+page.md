@@ -13,6 +13,8 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
 ---
 
 <script>
+  export let data; // This comes from +page.js
+  //console.log('Page data:', data);
   import Chart from './Chart.svelte'
 </script>
 
@@ -20,13 +22,15 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
   <div class="chart-title">
     <h1>Acres of Land Owned by Negroes in Georgia.</h1>
   </div>
-  <Chart />
+  <Chart data={data}/>
 </div>
 
 <a class="original" href={original}>View the original</a>
 
 <h2>How it's made</h2>
 
+This plate shows a steady rise in Black land ownership over a 25 year period between 1874 and 1899.
+The total land ownership increases nearly threefold from 338,769 acres to over 1 million acres.
 
 <h2>How I want to make it better</h2>
 
@@ -45,26 +49,23 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
     margin: 1vh auto 1vh auto;
     opacity: 0.9;
     width: 75%;
-    padding-bottom: 2rem;
+    padding-bottom: 1.2rem;
   }
 
   .chart-title {
-    margin-bottom: 1rem;
     line-height: 1.2;
     font-family: "Public Sans", sans-serif;
     color: black;
+    margin: 1rem 25% 0 25%;
+    opacity: .85;
   }
 
   .chart-title h1 {
     color: black;
     font-family: "Public Sans", sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 
-  .chart-title h1 {
-    font-weight: 700;
-    margin: 1rem 0 0;
-  }
 
   .original {
     font-size: 1rem;
