@@ -1,6 +1,9 @@
 <script>
+  import Tooltip from "./Tooltip.svelte"; // Import the Tooltip component
+  // Import necessary D3 functions
   import { scaleLinear } from "d3-scale";
   import { max } from "d3-array";
+
   export let data; // This is the full data object from +page.js
 
   // Access the CSV data correctly - it's at data.csvData, not data.data
@@ -29,11 +32,13 @@
   $: xScale = scaleLinear()
     .domain([0, max(processedData, (d) => d.Land)])
     .range([padding.left, width - padding.right - padding.left]);
+
+  let hoveredData;
 </script>
 
 <div bind:clientWidth={width}>
   <svg {width} {height} xmlns="http://www.w3.org/2000/svg">
-    {#each processedData as d, i}
+    {#each processedData.sort((a, b) => a.Year - b.Year) as d, i}
       <rect
         x={xScale(0)}
         y={yScale(i)}
@@ -43,6 +48,20 @@
         stroke="black"
         fill-opacity=".95"
         stroke-opacity=".5"
+        opacity={hoveredData ? (hoveredData == d ? 1 : 0.45) : 0.85}
+        tabindex="0"
+        on:mouseover={() => {
+          hoveredData = d;
+        }}
+        on:focus={() => {
+          hoveredData = d;
+        }}
+        on:mouseleave={() => {
+          hoveredData = null;
+        }}
+        on:focusout={() => {
+          hoveredData = null;
+        }}
       />
       <text
         class="year"
@@ -50,7 +69,19 @@
         y={yScale(i)}
         dx="-5"
         dy="9"
-        opacity=".9">{d.Year}</text
+        opacity=".9"
+        on:mouseover={() => {
+          hoveredData = d;
+        }}
+        on:focus={() => {
+          hoveredData = d;
+        }}
+        on:mouseleave={() => {
+          hoveredData = null;
+        }}
+        on:focusout={() => {
+          hoveredData = null;
+        }}>{d.Year}</text
       >
       {#if (i === 0) | (i == processedData.length - 1)}
         <text
@@ -63,6 +94,9 @@
       {/if}
     {/each}
   </svg>
+  {#if hoveredData}
+    <Tooltip {hoveredData} {xScale} {yScale} />
+  {/if}
 </div>
 
 <style>
@@ -81,6 +115,7 @@
     font-size: 1rem;
     font-weight: 800;
     opacity: 0.75;
+    pointer-events: none; /* Prevents text from blocking mouse events */
   }
   svg {
     overflow: visible;
