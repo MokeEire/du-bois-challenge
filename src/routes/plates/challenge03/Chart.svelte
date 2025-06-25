@@ -1,119 +1,66 @@
 <script>
 
-  import { csv } from 'd3-fetch';
-
-  let data = csv("$lib/data/challengeo3.csv");
+  import { scaleLinear } from 'd3-scale';
+  import { max } from 'd3-array';
+  export let data; // This is the full data object from +page.js
   
-  $inspect(data);
+  // Access the CSV data correctly - it's at data.csvData, not data.data
+  $: csvData = data?.csvData || [];
+  //console.log('Raw CSV Data:', data); // Log the entire data object to see its structure
+  
+  console.log('CSV Data:', data?.csvData); // This should now work
+  
+  // Convert string values to numbers for visualization
+  $: processedData = csvData.map(d => ({
+    Year: +d.Date, // Convert to Date object
+    Land: +d.Land // Convert string to number
+  }));
+  
+  $: console.log('Processed Data:', processedData);
+
   let width = 300;
-  $: height = width*1.25;
-  let countiesRewind = rewind(georgiaCounties, { reverse: true });
-  let counties = georgiaCounties.features;
-  let counties2 = georgiaCounties.features;
+  $: height = width*1.2;
 
-  // Projection function
-  $: projection = geoAlbers()
-    .scale(3900 - (871 - width)*3)
-    .rotate([79.1+(871-width)/200, 11.75-(871-width)/200])
-    .translate([width / 2.5, height / 2]); // Where the projection is centered
-  $: console.log(path.bounds(counties))
+  const padding = { top: 20, right: 40, bottom: 20, left: 80 };
 
-  // Path generator
-  $: path = geoPath().projection(projection);
 
-  let georgiaCoords = [-79.5, 27.5];
+  $: yScale = scaleLinear()
+    .domain([0, processedData.length])
+    .range([padding.top, height - padding.bottom]);
 
-  const popCats = ["> 1000", "1000 - 2500", "2500 - 5000", "5000 - 10000", "10000 - 15000", "15000 - 20000", "20000 - 30000", null];
-  const colourRange = ["#516255", "#e4b558", "#df9e98", "#cf354f", "#b5967c", "#654321", "#41377c", "#e4d3bf"];
-  let colourScale = scaleOrdinal()
-    .domain(popCats)
-    .range(colourRange);
+  $: xScale = scaleLinear()
+    .domain([0, max(processedData, d => d.Land)])
+    .range([padding.left, width - padding.right - padding.left]);
 </script>
 
-<div class="chart-container" bind:clientWidth={width}>
-  <div class="row">
-    <div class="chart">
-      <h6 class="map-year">1870</h6>
-      <svg class="left" width={width / 2.5} height={height/3}>
-        <!-- Counties 1870-->
-        {#each counties as county}
-          <!-- svelte-ignore a11y-click-events-have-key-events --->
-          <path
-            class="county"
-            d={path(county.geometry)}
-            fill={colourScale(county.properties.population1870)}
-            stroke="black"
-            tabIndex="0"
-          />
-        {/each}
-  
-      </svg>
-    </div>
-    <!-- Top right legend -->
-    <Legend {colourScale} indexStart={4} indexStop={7} />
-  </div>
-  <div class="row">
-    <!-- Bottom left legend -->
-    <Legend {colourScale} indexStart={0} indexStop={4} right={true}/>
-  <div class="chart">
-    <h6 class="map-year">1880</h6>
-    <svg class="right" width={width / 2.5} height={height/3}>
-      <!-- Counties 1880-->
-      {#each counties as county}
-        <!-- svelte-ignore a11y-click-events-have-key-events --->
-        <path
-          class="county"
-          d={path(county.geometry)}
-          fill={colourScale(county.properties.population1880)}
-          stroke="black"
-          tabIndex="0"
-        />
+<div bind:clientWidth={width}>
+  <svg {width} {height} xmlns="http://www.w3.org/2000/svg">
+    {#each processedData as d, i}
+      <rect x={xScale(0)} y={yScale(i)} width={xScale(d.Land)} height={16} fill="#ee3052" stroke="black" fill-opacity=".95" stroke-opacity=".5"/>
+      <text class="year" x={padding.left} y={yScale(i)} dx="-5" dy="9" opacity=".9">{d.Year}</text>
+      {#if i === 0 | i == processedData.length - 1}
+        <text class="land" x={xScale(d.Land/2)} y={yScale(i)} dy="9" opacity=".9">{d.Land.toLocaleString()}</text>
+      {/if}
       {/each}
-
-    </svg>
-  </div>
-  </div>
-  
 </div>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
-  .chart-container {
-    margin: auto;
-    display: flex;
-    flex-flow: row wrap;
-    gap: 10px;
+  .year {
+    font-weight: 100;
+    text-anchor: end;
+    dominant-baseline: middle;
+    font-size: 1.1rem;
+    opacity: .75;
   }
-
-  .row {
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 10px;
-    width: 100%;
-    justify-content: center;
+  .land {
+    text-anchor: start;
+    dominant-baseline: middle;
+    font-size: 1rem;
+    font-weight: 800;
+    opacity: .75;
   }
-
-  .chart {
-    flex-direction: column;
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .map-year {
-    margin-top: 0;
-    position: relative;
-    left: 25%;
-  }
-
-  .left {
-    align-self: flex-end;
-  }
-
-  .right {
-    align-self: flex-start;
-  }
-
   svg {
     overflow: visible;
   }
