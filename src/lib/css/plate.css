@@ -1,0 +1,38 @@
+/* Custom bullet point styling */
+  
+
+  /* Resource list variant with enhanced styling */
+  .resource-list li {
+    background-color: rgba(237, 223, 210, 0.3); /* light db-tan */
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border-left: 3px solid var(--db-red, #dc143c);
+    margin-bottom: 1rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .resource-list li::before {
+    left: 1rem;
+    color: var(--db-red, #dc143c);
+  }
+
+  /* Link list variant for cleaner appearance */
+  .link-list li {
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .link-list li::before {
+    content: "→";
+    color: var(--db-red, #dc143c);
+    font-weight: normal;
+  }
+
+  /* Dark theme support */
+  :root[data-theme="dark"] li a {
+    color: var(--text-color);
+    text-decoration-color: var(--db-red, #dc143c);
+  }
+
+  :root[data-theme="dark"] .resource-list li {
+    background-color: rgba(120, 120, 120, 0.1);
+  }
