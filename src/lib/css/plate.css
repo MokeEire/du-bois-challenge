@@ -1,38 +1,93 @@
-/* Custom bullet point styling */
-  
+/* Scope all list styles to plate layout content */
+article.plate-content ul,
+.plate-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
 
-  /* Resource list variant with enhanced styling */
-  .resource-list li {
-    background-color: rgba(237, 223, 210, 0.3); /* light db-tan */
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border-left: 3px solid var(--db-red, #dc143c);
-    margin-bottom: 1rem;
-    border-radius: 0 4px 4px 0;
-  }
+article.plate-content li,
+.plate-content li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
 
-  .resource-list li::before {
-    left: 1rem;
-    color: var(--db-red, #dc143c);
-  }
+/* Custom bullet using Du Bois color palette */
+article.plate-content li::before,
+.plate-content li::before {
+  content: "●";
+  position: absolute;
+  left: 0;
+  color: var(--db-crimson, #dc143c);
+  font-weight: bold;
+  font-size: 1.2em;
+  top: -0.1em;
+}
 
-  /* Link list variant for cleaner appearance */
-  .link-list li {
-    padding-left: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
+/* Link styling within lists */
+article.plate-content li a,
+.plate-content li a {
+  color: var(--db-black, #2c2c2c);
+  text-decoration: underline;
+  text-decoration-color: var(--db-crimson, #dc143c);
+  text-underline-offset: 3px;
+  transition: all 200ms ease;
+}
 
-  .link-list li::before {
-    content: "→";
-    color: var(--db-red, #dc143c);
-    font-weight: normal;
-  }
+article.plate-content li a:hover,
+.plate-content li a:hover {
+  color: var(--db-crimson, #dc143c);
+  text-decoration-thickness: 2px;
+}
 
-  /* Dark theme support */
-  :root[data-theme="dark"] li a {
-    color: var(--text-color);
-    text-decoration-color: var(--db-red, #dc143c);
-  }
+/* Alternative square bullets for nested lists */
+article.plate-content li li::before,
+.plate-content li li::before {
+  content: "▪";
+  color: var(--db-brown, #654321);
+  font-size: 1em;
+}
 
-  :root[data-theme="dark"] .resource-list li {
-    background-color: rgba(120, 120, 120, 0.1);
-  }
+/* Resource list variant with enhanced styling */
+article.plate-content .resource-list li,
+.plate-content .resource-list li {
+  background-color: rgba(237, 223, 210, 0.3);
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border-left: 3px solid var(--db-crimson, #dc143c);
+  margin-bottom: 1rem;
+  border-radius: 0 4px 4px 0;
+}
+
+article.plate-content .resource-list li::before,
+.plate-content .resource-list li::before {
+  left: 1rem;
+  color: var(--db-crimson, #dc143c);
+}
+
+/* Link list variant for cleaner appearance */
+article.plate-content .link-list li,
+.plate-content .link-list li {
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+article.plate-content .link-list li::before,
+.plate-content .link-list li::before {
+  content: "→";
+  color: var(--db-crimson, #dc143c);
+  font-weight: normal;
+}
+
+/* Dark theme support */
+:root[data-theme="dark"] article.plate-content li a,
+:root[data-theme="dark"] .plate-content li a {
+  color: var(--text-color);
+  text-decoration-color: var(--db-crimson, #dc143c);
+}
+
+:root[data-theme="dark"] article.plate-content .resource-list li,
+:root[data-theme="dark"] .plate-content .resource-list li {
+  background-color: rgba(120, 120, 120, 0.1);
+}

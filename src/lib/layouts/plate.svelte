@@ -24,29 +24,31 @@
 
 <Seo {...seo} />
 
-<a
-  class="challenge"
-  href="https://github.com/ajstarks/dubois-data-portraits/tree/master/challenge/2024#the-challenges"
-  >Challenge #{challenge}</a
->
-<h1>{title} (Plate {plateNum})</h1>
+<article class="plate-content">
+  <a
+    class="challenge"
+    href="https://github.com/ajstarks/dubois-data-portraits/tree/master/challenge/2024#the-challenges"
+    >Challenge #{challenge}</a
+  >
+  <h1>{title} (Plate {plateNum})</h1>
 
-<p class="date">{format(actualDate, "d MMM yyyy")}</p>
+  <p class="date">{format(actualDate, "d MMM yyyy")}</p>
 
-<blockquote>
-  <strong>Please Note</strong>: The language used in this piece comes directly
-  from W.E.B. Du Bois' scientific study in 1900. I am torn about reproducing
-  language that could be painful for people to read, but I thought altering the
-  wording would be a disservice to the work. I find the language of Du Bois'
-  work to be a powerful reminder, especially for readers in a modern context,
-  that racial inequality has a long tenure in our societies and institutions.
-  However, race is a difficult subject to navigate with appropriate awareness
-  and compassion, especially for white people like myself. If you have any
-  thoughts or feedback on how to better present this work,
-  <a href="../contact">please reach out</a>.
-</blockquote>
+  <blockquote>
+    <strong>Please Note</strong>: The language used in this piece comes directly
+    from W.E.B. Du Bois' scientific study in 1900. I am torn about reproducing
+    language that could be painful for people to read, but I thought altering the
+    wording would be a disservice to the work. I find the language of Du Bois'
+    work to be a powerful reminder, especially for readers in a modern context,
+    that racial inequality has a long tenure in our societies and institutions.
+    However, race is a difficult subject to navigate with appropriate awareness
+    and compassion, especially for white people like myself. If you have any
+    thoughts or feedback on how to better present this work,
+    <a href="../contact">please reach out</a>.
+  </blockquote>
 
-<slot />
+  <slot />
+</article>
 
 <hr />
 
