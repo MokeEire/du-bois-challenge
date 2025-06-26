@@ -6,6 +6,7 @@ plateNum: 6
 description: "A map of Georgia's changing black population in the late 1800s."
 categories:
   - dataviz
+  - red
 date: 2024-06-14
 published: true
 image: /plates/challenge01/maps.png

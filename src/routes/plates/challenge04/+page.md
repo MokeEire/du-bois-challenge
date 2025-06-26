@@ -6,6 +6,7 @@ plateNum: 1
 description: "A map of transatlantic slave trade routes."
 categories:
   - dataviz
+  - black
 date: 2024-04-23
 published: true
 image: /plates/challenge04/routes.png

@@ -6,6 +6,7 @@ plateNum: 6
 description: "A graph depicting growth in black land ownership in the late 1800s."
 categories:
   - dataviz
+  - red
 date: 2025-06-25
 published: true
 image: /plates/challenge03/challenge03.png
