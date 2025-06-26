@@ -16,8 +16,27 @@ description: "A minimal Sveltekit theme with a sidebar."
   $: ({ plates } = data);
 </script>
 
-{#each $paginatedPosts as plate}
-  <PostItem {plate} />
-{/each}
+<div class="posts-grid">
+  {#each $paginatedPosts as plate}
+    <PostItem {plate} />
+  {/each}
+</div>
 
-<Pagination items={plates} itemsPerPage={3} />
+<Pagination items={plates} />
+
+<style>
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 3rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
