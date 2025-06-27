@@ -1,6 +1,7 @@
 <script>
   import { fade } from "svelte/transition"; // Import fade transition
   import Tooltip from "./Tooltip.svelte"; // Import the Tooltip component
+  import MarkerStyle from "$lib/components/MarkerStyle.svelte"; // Import the MarkerStyle component
   // Import necessary D3 functions
   import { scaleLinear } from "d3-scale";
   import { max } from "d3-array";
@@ -39,36 +40,7 @@
 
 <div bind:clientWidth={width}>
   <svg {width} {height} xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <!-- Marker stroke texture filter -->
-      <filter id="markerStroke" x="0%" y="0%" width="100%" height="100%">
-        <!-- Create horizontal streaks like marker strokes -->
-        <feTurbulence type="fractalNoise" baseFrequency="0.02 0.15" numOctaves="2" result="streaks"/>
-        <!-- Create fine texture overlay -->
-        <feTurbulence type="turbulence" baseFrequency="1.2" numOctaves="1" result="texture"/>
-        
-        <!-- Combine streaks and texture -->
-        <feBlend in="streaks" in2="texture" mode="multiply" result="combined"/>
-        
-        <!-- Convert to grayscale and enhance contrast -->
-        <feColorMatrix in="combined" type="saturate" values="0" result="gray"/>
-        <feComponentTransfer in="gray" result="contrast">
-          <feFuncA type="discrete" tableValues="0.3 0.5 0.7 0.85 1"/>
-        </feComponentTransfer>
-        
-        <!-- Blend with original shape using screen mode for lighter areas -->
-        <feBlend in="SourceGraphic" in2="contrast" mode="hard-light" result="lightened"/>
-        <!-- Then multiply for darker streaks -->
-        <feBlend in="lightened" in2="contrast" mode="overlay" result="final"/>
-        
-        <!-- Enhance saturation and vibrance -->
-        <feColorMatrix in="final" type="matrix" 
-                       values="1.75 0 0 0 0
-                               0 0.2 0 0 0
-                               0.1 0 0.2 0 0
-                               0 0 0 1 0"/>
-      </filter>
-    </defs>
+    <MarkerStyle />
     
     {#each processedData.sort((a, b) => a.Year - b.Year) as d, i}
       <rect
@@ -82,7 +54,7 @@
         fill-opacity=".95"
         stroke-opacity=".5"
         opacity={hoveredData ? (hoveredData == d ? 1 : 0.45) : 0.85}
-        filter="url(#markerStroke)"
+        filter="url(#markerRed)"
         tabindex="0"
         in:fade
         on:mouseover={() => {
