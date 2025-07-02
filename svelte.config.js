@@ -11,7 +11,7 @@ const config = {
     adapter: vercel(),
     // Enable below line and change /yuyutsu to /<your-repo-name> to host the site on github pages
     // paths: {
-    //   base: dev ? "" : "/yuyutsu",
+    //   base: dev ? "" : "/du-bois-challenge",
     // },
     // appDir: "app",
   },

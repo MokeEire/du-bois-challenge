@@ -1,15 +1,11 @@
 <script>
-  import { tweened } from "svelte/motion";
-  import { quartInOut } from "svelte/easing";
-
   import georgiaCounties from "$lib/data/county_combined.geojson.json";
-  import * as topojson from "topojson-client";
   import rewind from "@turf/rewind";
 
   import { geoPath, geoAlbers } from "d3-geo";
   import { scaleOrdinal } from "d3-scale";
-  import { draw, fade, scale } from "svelte/transition";
   import Legend from "./Legend.svelte";
+  //import texture from '$lib/assets/fill-marker-2.png';
 
   let width = 300;
   $: height = width*1.25;
@@ -34,13 +30,21 @@
   let colourScale = scaleOrdinal()
     .domain(popCats)
     .range(colourRange);
+
+    let hovered;
+  $: console.log(hovered);
 </script>
 
 <div class="chart-container" bind:clientWidth={width}>
   <div class="row">
     <div class="chart">
       <h6 class="map-year">1870</h6>
-      <svg class="left" width={width / 2.5} height={height/3}>
+      <div class="map">
+        <!-- Attempt to add texture <img src={texture} class="texture"/>--->
+      <svg class="left" width={width / 2.5} height={height/3}
+      on:mouseleave={() => {
+        hovered = null;
+      }}>
         <!-- Counties 1870-->
         {#each counties as county}
           <!-- svelte-ignore a11y-click-events-have-key-events --->
@@ -50,10 +54,16 @@
             fill={colourScale(county.properties.population1870)}
             stroke="black"
             tabIndex="0"
+            on:mouseover={() => {
+              hovered = county.properties;
+            }}
+            on:focus={() => {
+              hovered = county.properties;
+            }}
           />
         {/each}
-  
       </svg>
+      </div>
     </div>
     <!-- Top right legend -->
     <Legend {colourScale} indexStart={4} indexStop={7} />
@@ -63,7 +73,10 @@
     <Legend {colourScale} indexStart={0} indexStop={4} right={true}/>
   <div class="chart">
     <h6 class="map-year">1880</h6>
-    <svg class="right" width={width / 2.5} height={height/3}>
+    <svg class="right" width={width / 2.5} height={height/3}
+    on:mouseleave={() => {
+      hovered = null;
+    }}>
       <!-- Counties 1880-->
       {#each counties as county}
         <!-- svelte-ignore a11y-click-events-have-key-events --->
@@ -73,6 +86,12 @@
           fill={colourScale(county.properties.population1880)}
           stroke="black"
           tabIndex="0"
+            on:mouseover={() => {
+              hovered = county.properties;
+            }}
+            on:focus={() => {
+              hovered = county.properties;
+            }}
         />
       {/each}
 
@@ -122,6 +141,24 @@
 
   svg {
     overflow: visible;
+    
+  }
+  .county {
+    cursor: pointer;
+  }
+
+  .map {
+    position: relative;
+    z-index: 2;
+  }
+
+  .texture {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: difference;
+    user-select: none;
   }
 
 </style>
