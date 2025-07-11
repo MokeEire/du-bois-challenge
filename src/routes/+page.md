@@ -17,6 +17,7 @@ description: "A minimal Sveltekit theme with a sidebar."
   $: ({ plates } = data);
 </script>
 
+<!-- Paginated Posts
 <div class="posts-grid">
   {#each $paginatedPosts as plate}
     <PostItem {plate} />
@@ -41,6 +42,8 @@ description: "A minimal Sveltekit theme with a sidebar."
     }
   }
 </style>
-<!-- PostGrid component 
-<PostGrid {plates} />
+
 -->
+<!-- PostGrid component -->
+<PostGrid {plates} />
+
