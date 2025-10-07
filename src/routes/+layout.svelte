@@ -6,6 +6,7 @@
   import Sidebar from "$lib/components/Sidebar.svelte";
   import { isSidebarOpen } from "$lib/stores";
   import Header from "$lib/components/Header.svelte";
+  import Footer from "$lib/components/Footer.svelte";
 </script>
 
 <div class="wrapper overflow-hidden">
@@ -16,6 +17,7 @@
     <article class="container">
       <slot />
     </article>
+    <Footer sidebar={false} />
   </main>
 </div>
 
@@ -26,10 +28,15 @@
   }
   main {
     width: 100%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   article {
-    margin: 2rem auto;
+    margin: 1rem auto;
+    
   }
   .show {
     transform: translateX(18rem);
