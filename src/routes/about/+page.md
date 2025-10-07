@@ -11,3 +11,8 @@ But this short summary cannot come close to describing the breadth of Du Bois' l
 
 This website is a portfolio of W.E.B. Du Bois' data visualizations created with modern tools as part of the [2024 W.E.B. Du Bois challenge](https://github.com/ajstarks/dubois-data-portraits/tree/master/challenge/2024).
 It is an attempt to develop my skills with the tools and theory of data visualization while drawing attention to the work of a hugely significant scientist.
+
+Read more about Du Bois:
+
+- https://nightingaledvs.com/w-e-b-du-bois-staggering-data-visualizations-are-as-powerful-today-as-they-were-in-1900-part-1/
+- https://www.cooperhewitt.org/2023/02/23/the-typography-of-w-e-b-du-bois/
