@@ -22,7 +22,7 @@ description: "A minimal Sveltekit theme with a sidebar."
   {/each}
 </div>
 
-<Pagination items={plates} />
+<Pagination items={plates} itemsPerPage={4}/>
 
 <style>
   .posts-grid {
