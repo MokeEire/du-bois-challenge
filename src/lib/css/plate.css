@@ -1,4 +1,7 @@
 /* Scope all list styles to plate layout content */
+article.plate-content p {
+  margin-top: 1rem
+}
 article.plate-content ul,
 .plate-content ul {
   list-style: none;
@@ -22,7 +25,6 @@ article.plate-content li::before,
   left: 0;
   color: var(--db-crimson, #dc143c);
   font-weight: bold;
-  font-size: 1.2em;
   top: -0.1em;
 }
 
