@@ -5,6 +5,7 @@
   import { format } from "date-fns";
   import { Utterances, utterancesTheme } from "@codewithshin/svelte-utterances";
   import { repoName } from "$lib/constants";
+  import Disclaimer from "$lib/components/Disclaimer.svelte";
   import '$lib/css/plate.css';
 
   export let data;
@@ -34,18 +35,7 @@
 
   <p class="date">{format(actualDate, "d MMM yyyy")}</p>
 
-  <blockquote>
-    <strong>Please Note</strong>: The language used in this piece comes directly
-    from W.E.B. Du Bois' scientific study in 1900. I am torn about reproducing
-    language that could be painful for people to read, but I thought altering the
-    wording would be a disservice to the work. I find the language of Du Bois'
-    work to be a powerful reminder, especially for readers in a modern context,
-    that racial inequality has a long tenure in our societies and institutions.
-    However, race is a difficult subject to navigate with appropriate awareness
-    and compassion, especially for white people like myself. If you have any
-    thoughts or feedback on how to better present this work,
-    <a href="../contact">please reach out</a>.
-  </blockquote>
+  <Disclaimer />
 
   <slot />
 </article>
@@ -106,14 +96,7 @@
     padding-bottom: 0.2rem;
   }
 
-  blockquote {
-    font-size: 0.9rem;
-    border-left: 12px solid var(--db-crimson);
-    border-radius: 2px;
-    margin: 1rem 0 1rem;
-    background-color: transparent;
-    padding: 8px 0 8px 16px;
-  }
+  
 
   @media screen and (max-width: 800px) {
     h1 {

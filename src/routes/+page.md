@@ -5,6 +5,7 @@ description: "A minimal Sveltekit theme with a sidebar."
 ---
 
 <script>
+  import Disclaimer from "$lib/components/Disclaimer.svelte";
   import PostItem from "$lib/components/PostItem.svelte";
   import PostGrid from "$lib/components/PostGrid.svelte";
   import Pagination from "$lib/components/Pagination/Pagination.svelte";
@@ -17,6 +18,7 @@ description: "A minimal Sveltekit theme with a sidebar."
   $: ({ plates } = data);
 </script>
 
+<Disclaimer />
 <!-- Paginated Posts
 <div class="posts-grid">
   {#each $paginatedPosts as plate}
@@ -45,5 +47,5 @@ description: "A minimal Sveltekit theme with a sidebar."
 
 -->
 <!-- PostGrid component -->
-<PostGrid {plates} />
 
+<PostGrid {plates} />
