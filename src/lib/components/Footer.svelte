@@ -33,7 +33,7 @@
 {/if}
 
 <style>
-  footer {
+  footer, footer p {
     color: #ddd;
     font-size: 0.8rem;
     opacity: .95;
