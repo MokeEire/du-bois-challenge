@@ -36,8 +36,7 @@
 
   <p class="date">{format(actualDate, "d MMM yyyy")}</p>
   <hr />
-  <a class="original" href={original}>View the original</a>
-
+  <a class="original" target="_blank" href={original}>View the original</a>
   <slot />
 </article>
 
