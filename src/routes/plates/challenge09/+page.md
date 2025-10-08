@@ -86,6 +86,7 @@ If you have any suggestions, please share in the comments below.
     font-family: "Public Sans", sans-serif;
     font-size: 1.1rem;
     text-align: left;
+    text-wrap-mode: nowrap;
   }
 
   .chart-title h4 {
