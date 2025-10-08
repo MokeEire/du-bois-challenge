@@ -14,9 +14,23 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
 ---
 
 <script>
+  // restart animation code stolen from here:
+  // https://stackoverflow.com/questions/63224275/is-it-possible-to-manually-cancel-and-retrigger-a-svelte-animation
+  import { tick } from 'svelte';
+    let show = true;
+    
+    async function onInput () {
+        show = false;
+        await tick();
+        show = true;
+    }
   import Map from './Map.svelte'
   import transitionGif from '$lib/assets/transition-local.gif';
 </script>
+
+<button on:click={onInput}><span class="mdi--restart"></span> Restart Animation</button>
+
+{#if show}
 
 <div class="plate">
   <div class="chart-title">
@@ -50,14 +64,14 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
       >
     </p>
     </div>
-
+{/if}
 
 <h2>How it's made</h2>
 
-This plate maps the transatlantic slave trade routes and the subsequent black population in the Americas. 
+This plate maps the transatlantic slave trade routes and the subsequent black population in the Americas.
 I started out using code from Connor Rothschild's lesson [Create an Interactive Globe Visualization With Svelte + D3.js](https://www.newline.co/courses/better-data-visualizations-with-svelte/what-we-ll-be-building-globe).
 This included using an SVG circle as the background of the globe and using the [`d3-geo`](https://github.com/d3/d3-geo) and [TopoJSON](https://github.com/topojson) libraries to render countries' borders and shapes.
-To create the twin-globe look, I created two SVG circles for the background with centres placed at 25% and 75% of the chart's width. 
+To create the twin-globe look, I created two SVG circles for the background with centres placed at 25% and 75% of the chart's width.
 
 Next I needed to plot the countries' borders.
 I tried a few different [projections](https://d3js.org/d3-geo/projection), but didn't come across one which looked right.
@@ -105,9 +119,8 @@ Here's an example of what the transition looks like on my local machine.
 
 <img src={transitionGif} />
 
-I would also like to incorporate more granular data of individual slave trade routes. 
+I would also like to incorporate more granular data of individual slave trade routes.
 While I started to do this, I quickly realized it would be a much more involved analysis that would require decomposing Du Bois' visual and I want to focus on learning to make visuals for now.
-
 
 <style>
 
@@ -185,4 +198,27 @@ While I started to do this, I quickly realized it would be a much more involved 
   .caption {
     text-align: right;
   }
+
+  button {
+    background: var(--db-tan);
+    font-weight: 500;
+    margin: .5rem;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .mdi--restart {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 4c2.1 0 4.1.8 5.6 2.3c3.1 3.1 3.1 8.2 0 11.3c-1.8 1.9-4.3 2.6-6.7 2.3l.5-2c1.7.2 3.5-.4 4.8-1.7c2.3-2.3 2.3-6.1 0-8.5C15.1 6.6 13.5 6 12 6v4.6l-5-5l5-5zM6.3 17.6C3.7 15 3.3 11 5.1 7.9l1.5 1.5c-1.1 2.2-.7 5 1.2 6.8q.75.75 1.8 1.2l-.6 2q-1.5-.6-2.7-1.8'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
 </style>
