@@ -95,8 +95,8 @@
   }
 
   .card-title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
     font-weight: 600;
     text-align: left;
     color: var(--db-black);
@@ -107,7 +107,7 @@
     border-bottom: 1px solid var(--db-brown);
     border-radius: .5rem .5rem 0 0;
     background-color: var(--db-tan);
-    min-height: 25%
+    min-height: 22%
   }
 
 
