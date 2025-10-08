@@ -6,10 +6,10 @@
   import { Utterances, utterancesTheme } from "@codewithshin/svelte-utterances";
   import { repoName } from "$lib/constants";
   import Disclaimer from "$lib/components/Disclaimer.svelte";
-  import '$lib/css/plate.css';
+  import "$lib/css/plate.css";
 
   export let data;
-  export let title, description, date, challenge, plateNum, edit, image;
+  export let title, description, date, challenge, plateNum, original, image;
 
   const theme = "github-light";
 
@@ -27,17 +27,16 @@
 
 <article class="plate-content">
   <h1>{title} (Plate {plateNum})</h1>
-  <p
-    class="challenge"
-    >Challenge #{challenge}</p
+  <p class="challenge">Challenge #{challenge}</p>
+  <a
+    class="challenge-link"
+    href="https://github.com/ajstarks/dubois-data-portraits/tree/master/challenge/2024#the-challenges"
+    >View the challenges on GitHub</a
   >
-  <a class="challenge-link" href="https://github.com/ajstarks/dubois-data-portraits/tree/master/challenge/2024#the-challenges">View the challenges on GitHub</a>
-
-  
 
   <p class="date">{format(actualDate, "d MMM yyyy")}</p>
-  <hr>
-  
+  <hr />
+  <a class="original" href={original}>View the original</a>
 
   <slot />
 </article>
@@ -50,8 +49,6 @@
 
 <Utterances reponame={repoName} {theme} />
 
-
-
 <style>
   .plate-content {
     margin-bottom: 2rem;
@@ -63,7 +60,7 @@
     margin-bottom: 0;
     margin-top: 0;
     font-weight: 500;
-    line-height: .5;
+    line-height: 0.5;
   }
 
   .challenge-link:hover {
@@ -81,26 +78,24 @@
 
   hr {
     margin: 0.5rem 1rem;
-    opacity: .25;
+    opacity: 0.25;
   }
-
 
   h1 {
     margin-top: 0;
     font-size: 2rem;
   }
   .date {
-    font-size: .8rem;
+    font-size: 0.8rem;
     color: var(--db-brown);
     opacity: 0.8;
     margin-bottom: 0.5rem;
     margin-top: 0;
   }
 
-
   .return {
     margin: 0 1rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
   .border-top {
@@ -113,12 +108,13 @@
     padding-bottom: 0.2rem;
   }
 
-  
+  .original {
+    font-size: 1rem;
+  }
 
   @media screen and (max-width: 800px) {
     h1 {
       font-size: 2rem;
     }
   }
-  
 </style>

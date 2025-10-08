@@ -17,6 +17,8 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
   import Chart from './Chart.svelte'
 </script>
 
+
+
 <div class="plate">
   <div class="chart-title">
     <h1>Negro Population of Georgia by Counties.</h1>
@@ -24,7 +26,7 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
   <Chart />
 </div>
 
-<a class="original" href={original}>View the original</a>
+
 
 <h2>How it's made</h2>
 
@@ -82,9 +84,6 @@ I would also like to recreate the marker line texture that is present in Du Bois
     margin: 1rem 0 0;
   }
 
-  .original {
-    font-size: 1rem;
-  }
 
   @media screen and (max-width: 800px) {
     .plate {
