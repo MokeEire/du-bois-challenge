@@ -28,7 +28,6 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
   <Chart data={data}/>
 </div>
 
-<a class="original" href={original} target="_blank">View the original</a>
 
 This plate shows how few black people in America enjoyed freedom until 1870.
 In Du Bois' work, this likely served as one of many rebuttals to the claims of black inferiority made through scientific racism that was prevalent at the time.
@@ -97,10 +96,6 @@ If you have any suggestions, please share in the comments below.
     align-self: center;
   }
 
-
-  .original {
-    font-size: 1rem;
-  }
 
   @media screen and (max-width: 800px) {
     .plate {

@@ -26,7 +26,6 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
   <Chart data={data}/>
 </div>
 
-<a class="original" href={original} target="_blank">View the original</a>
 
 This plate shows a steady rise in Black land ownership over a 25 year period between 1874 and 1899.
 The total land ownership increases nearly threefold from 338,769 acres to over 1 million acres.
@@ -102,9 +101,6 @@ If you have any suggestions, please share in the comments below.
   }
 
 
-  .original {
-    font-size: 1rem;
-  }
 
   @media screen and (max-width: 800px) {
     .plate {
