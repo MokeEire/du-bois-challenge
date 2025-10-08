@@ -26,64 +26,81 @@
 <Seo {...seo} />
 
 <article class="plate-content">
-  <a
-    class="challenge"
-    href="https://github.com/ajstarks/dubois-data-portraits/tree/master/challenge/2024#the-challenges"
-    >Challenge #{challenge}</a
-  >
   <h1>{title} (Plate {plateNum})</h1>
+  <p
+    class="challenge"
+    >Challenge #{challenge}</p
+  >
+  <a class="challenge-link" href="https://github.com/ajstarks/dubois-data-portraits/tree/master/challenge/2024#the-challenges">View the challenges on GitHub</a>
+
+  
 
   <p class="date">{format(actualDate, "d MMM yyyy")}</p>
-
-  <Disclaimer />
+  <hr>
+  
 
   <slot />
 </article>
 
 <hr />
 
-<Utterances reponame={repoName} {theme} />
-
 <a class="return padding-bottom border-top" href="/" sveltekit:prefetch
   >&#8592; Back to all plates
 </a>
-<p class="edit"><a href={edit} target="_blank">Edit this page</a></p>
+
+<Utterances reponame={repoName} {theme} />
+
+
 
 <style>
+  .plate-content {
+    margin-bottom: 2rem;
+  }
   .challenge {
     font-size: 0.95rem;
     color: var(--db-brown);
     opacity: 0.8;
     margin-bottom: 0;
-    text-decoration: none;
+    margin-top: 0;
+    font-weight: 500;
+    line-height: .5;
+  }
+
+  .challenge-link:hover {
+    opacity: 1;
+  }
+
+  .challenge-link {
+    font-size: 0.8rem;
+    color: var(--db-brown);
+    opacity: 0.6;
+    margin-bottom: 0;
+    text-decoration: underline;
     font-weight: 500;
   }
 
-  .challenge:hover {
-    text-decoration: underline;
+  hr {
+    margin: 0.5rem 1rem;
+    opacity: .25;
   }
+
 
   h1 {
     margin-top: 0;
     font-size: 2rem;
   }
   .date {
-    font-size: 1rem;
+    font-size: .8rem;
     color: var(--db-brown);
     opacity: 0.8;
     margin-bottom: 0.5rem;
+    margin-top: 0;
   }
 
-  .edit {
-    display: flex;
-  }
-  .edit a {
-    margin-left: auto;
-  }
 
   .return {
-    display: flex;
-    margin: 1rem 0 0;
+    margin: 0 1rem;
+    font-size: .9rem;
   }
 
   .border-top {
