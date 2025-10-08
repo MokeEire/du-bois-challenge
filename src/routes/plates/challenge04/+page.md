@@ -80,7 +80,7 @@ I used SVG's <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/c
 
 ### Draw the paths
 
-As mentioned above, I generated the JSON for the routes with an online tool.
+As mentioned above, I generated the JSON for the routes with an online tool called [geojson.io](https://geojson.io).
 The routes look something like this:
 
 ```
