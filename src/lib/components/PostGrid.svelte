@@ -2,7 +2,7 @@
   import ArticleCard from "$lib/components/ArticleCard.svelte";
   export let plates;
 
-  $: sortedPlates = plates?.sort((a, b) => a.challenge - b.challenge);//new Date(a.date) - new Date(b.date));
+  $: sortedPlates = plates?.sort((a, b) => new Date(b.date) - new Date(a.date));//a.challenge - b.challenge);
 </script>
 
 <div class="grid">
