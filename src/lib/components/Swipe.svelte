@@ -1,10 +1,10 @@
 <script>
-    let touchstartX = 0;
-    let touchstartY = 0;
-    let touchendX = 0;
-    let touchendY = 0;
+    let touchstartX = $state(0);
+    let touchstartY = $state(0);
+    let touchendX = $state(0);
+    let touchendY = $state(0);
 
-    export let direction;
+    let { direction = $bindable() } = $props();
 
     const findSwipeDirection = () => {
         if (touchstartX - touchendX > 80) {
@@ -35,11 +35,11 @@
 </script>
 
 <svelte:window
-    on:touchstart={(e) => {
+    ontouchstart={(e) => {
         touchstartX = e.changedTouches[0].clientX;
         touchstartY = e.changedTouches[0].clientY;
     }}
-    on:touchend={(e) => {
+    ontouchend={(e) => {
         touchendX = e.changedTouches[0].clientX;
         touchendY = e.changedTouches[0].clientY;
         findSwipeDirection();

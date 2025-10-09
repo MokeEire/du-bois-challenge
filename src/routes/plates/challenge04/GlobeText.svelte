@@ -1,7 +1,5 @@
 <script>
-    export let width;
-    export let height;
-    export let clip;
+    let { width, height, clip } = $props();
 
 </script>
 

@@ -1,7 +1,13 @@
 <script>
   import {randomUniform} from 'd3-random';
-  export let colour = 'red';
-  export let direction = 'horizontal';
+  /**
+   * @typedef {Object} Props
+   * @property {string} [colour]
+   * @property {string} [direction]
+   */
+
+  /** @type {Props} */
+  let { colour = 'red', direction = 'horizontal' } = $props();
   
   const colorMatrices = {
     red: "1.75 0 0 0 0, 0 0.2 0 0 0, 0.1 0 0.2 0 0, 0 0 0 1 0",
@@ -10,8 +16,8 @@
     yellow: "1.5 0 0 0 0, 0 1.5 0 0 0, 0 0 0.2 0 0, 0 0 0 1 0"
   };
   
-  $: filterId = `marker${colour.charAt(0).toUpperCase() + colour.slice(1)}`;
-  $: colorMatrix = colorMatrices[colour] || colorMatrices.red;
+  let filterId = $derived(`marker${colour.charAt(0).toUpperCase() + colour.slice(1)}`);
+  let colorMatrix = $derived(colorMatrices[colour] || colorMatrices.red);
   let smallFreq = randomUniform(.02, .04);
   let largeFreq = randomUniform(.16, .25);
   let fractalFreq = (direction === 'horizontal' ? `${smallFreq().toFixed(2)} ${largeFreq().toFixed(2)}` : `${largeFreq().toFixed(2)} ${smallFreq().toFixed(2)}`);

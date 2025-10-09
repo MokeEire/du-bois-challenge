@@ -1,6 +1,6 @@
 <script>
-  export let plate;
-  $: ({ title, description, slug, categories, image } = plate);
+  let { plate } = $props();
+  let { title, description, slug, categories, image } = $derived(plate);
 </script>
 
 <div class="card">

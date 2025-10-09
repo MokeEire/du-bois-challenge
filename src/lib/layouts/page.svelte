@@ -1,7 +1,7 @@
 <script>
   import Seo from "$lib/components/Seo.svelte";
   import { siteTitle } from "$lib/constants";
-  export let title, description;
+  let { title, description, children } = $props();
   const seo = {
     title: `${title} | ${siteTitle}`,
     description,
@@ -10,4 +10,4 @@
 
 <Seo {...seo} />
 
-<slot />
+{@render children?.()}

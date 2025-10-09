@@ -2,7 +2,13 @@
   import { footerText, links } from "$lib/constants";
   const date = new Date();
   const year = date.getFullYear();
-  export let sidebar = true;
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [sidebar]
+   */
+
+  /** @type {Props} */
+  let { sidebar = true } = $props();
 </script>
 
 {#if sidebar}

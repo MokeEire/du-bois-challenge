@@ -1,6 +1,5 @@
 <script>
-export let xScale;
-export let padding;
+    let { xScale, padding } = $props();
 
 </script>
 

@@ -1,13 +1,31 @@
 <script>
-  export let title = undefined;
-  export let noindex = false;
-  export let nofollow = false;
-  export let description = undefined;
-  export let keywords = undefined;
-  export let canonical = undefined;
-  export let openGraph = undefined;
-  export let twitter = undefined;
-  export let image = undefined;
+  /**
+   * @typedef {Object} Props
+   * @property {any} [title]
+   * @property {boolean} [noindex]
+   * @property {boolean} [nofollow]
+   * @property {any} [description]
+   * @property {any} [keywords]
+   * @property {any} [canonical]
+   * @property {any} [openGraph]
+   * @property {any} [twitter]
+   * @property {any} [image]
+   * @property {import('svelte').Snippet} [children]
+   */
+
+  /** @type {Props} */
+  let {
+    title = undefined,
+    noindex = false,
+    nofollow = false,
+    description = undefined,
+    keywords = undefined,
+    canonical = undefined,
+    openGraph = undefined,
+    twitter = undefined,
+    image = undefined,
+    children
+  } = $props();
 </script>
 
 <svelte:head>
@@ -130,5 +148,5 @@
     {/if}
   {/if}
 
-  <slot />
+  {@render children?.()}
 </svelte:head>

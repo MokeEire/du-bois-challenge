@@ -1,14 +1,12 @@
 <script>
   import { fly } from "svelte/transition";
 
-  export let hoveredData;
-  export let xScale;
-  export let yScale;
+  let { hoveredData, xScale, yScale } = $props();
 
-  $: x = xScale(hoveredData.Land / 2);
-  $: y = yScale(hoveredData.Year - 1874);
+  let x = $derived(xScale(hoveredData.Land / 2));
+  let y = $derived(yScale(hoveredData.Year - 1874));
 
-  let tooltipWidth;
+  let tooltipWidth = $state();
 </script>
 
 <div

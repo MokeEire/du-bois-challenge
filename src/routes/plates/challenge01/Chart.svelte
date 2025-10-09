@@ -1,4 +1,6 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import georgiaCounties from "$lib/data/county_combined.geojson.json";
   import rewind from "@turf/rewind";
 
@@ -7,21 +9,12 @@
   import Legend from "./Legend.svelte";
   //import texture from '$lib/assets/fill-marker-2.png';
 
-  let width = 300;
-  $: height = width*1.25;
+  let width = $state(300);
   let countiesRewind = rewind(georgiaCounties, { reverse: true });
   let counties = georgiaCounties.features;
   let counties2 = georgiaCounties.features;
 
-  // Projection function
-  $: projection = geoAlbers()
-    .scale(3900 - (871 - width)*3)
-    .rotate([79.1+(871-width)/200, 11.75-(871-width)/200])
-    .translate([width / 2.5, height / 2]); // Where the projection is centered
-  $: console.log(path.bounds(counties))
 
-  // Path generator
-  $: path = geoPath().projection(projection);
 
   let georgiaCoords = [-79.5, 27.5];
 
@@ -31,8 +24,21 @@
     .domain(popCats)
     .range(colourRange);
 
-    let hovered;
-  $: console.log(hovered);
+    let hovered = $state();
+  let height = $derived(width*1.25);
+  // Projection function
+  let projection = $derived(geoAlbers()
+    .scale(3900 - (871 - width)*3)
+    .rotate([79.1+(871-width)/200, 11.75-(871-width)/200])
+    .translate([width / 2.5, height / 2])); // Where the projection is centered
+  // Path generator
+  let path = $derived(geoPath().projection(projection));
+  run(() => {
+    console.log(path.bounds(counties))
+  });
+  run(() => {
+    console.log(hovered);
+  });
 </script>
 
 <div class="chart-container" bind:clientWidth={width}>
@@ -42,22 +48,22 @@
       <div class="map">
         <!-- Attempt to add texture <img src={texture} class="texture"/>--->
       <svg class="left" width={width / 2.5} height={height/3}
-      on:mouseleave={() => {
+      onmouseleave={() => {
         hovered = null;
       }}>
         <!-- Counties 1870-->
         {#each counties as county}
-          <!-- svelte-ignore a11y-click-events-have-key-events --->
+          <!-- svelte-ignore a11y_click_events_have_key_events --->
           <path
             class="county"
             d={path(county.geometry)}
             fill={colourScale(county.properties.population1870)}
             stroke="black"
             tabIndex="0"
-            on:mouseover={() => {
+            onmouseover={() => {
               hovered = county.properties;
             }}
-            on:focus={() => {
+            onfocus={() => {
               hovered = county.properties;
             }}
           />
@@ -74,22 +80,22 @@
   <div class="chart">
     <h6 class="map-year">1880</h6>
     <svg class="right" width={width / 2.5} height={height/3}
-    on:mouseleave={() => {
+    onmouseleave={() => {
       hovered = null;
     }}>
       <!-- Counties 1880-->
       {#each counties as county}
-        <!-- svelte-ignore a11y-click-events-have-key-events --->
+        <!-- svelte-ignore a11y_click_events_have_key_events --->
         <path
           class="county"
           d={path(county.geometry)}
           fill={colourScale(county.properties.population1880)}
           stroke="black"
           tabIndex="0"
-            on:mouseover={() => {
+            onmouseover={() => {
               hovered = county.properties;
             }}
-            on:focus={() => {
+            onfocus={() => {
               hovered = county.properties;
             }}
         />

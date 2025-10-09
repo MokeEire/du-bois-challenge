@@ -1,5 +1,5 @@
 <script>
-  export let categories;
+  let { categories } = $props();
 </script>
 
 <ul class="categories">

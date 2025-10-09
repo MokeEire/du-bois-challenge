@@ -1,8 +1,19 @@
 <script>
-  export let colourScale;
-  export let indexStart = 0;
-  export let indexStop = colourScale.domain().length;
-  export let right = false;
+  /**
+   * @typedef {Object} Props
+   * @property {any} colourScale
+   * @property {number} [indexStart]
+   * @property {any} [indexStop]
+   * @property {boolean} [right]
+   */
+
+  /** @type {Props} */
+  let {
+    colourScale,
+    indexStart = 0,
+    indexStop = colourScale.domain().length,
+    right = false
+  } = $props();
 
   //console.log(colourScale.domain());
   let indexedArray = colourScale.domain().slice(indexStart, indexStop);
@@ -25,7 +36,7 @@
 <div class="legend" class:right>
   {#each indexedArray.reverse() as group}
     <p>
-      <span style="background-color: {colourScale(group)}" />
+      <span style="background-color: {colourScale(group)}"></span>
       {labelLegend(group)}
     </p>
   {/each}

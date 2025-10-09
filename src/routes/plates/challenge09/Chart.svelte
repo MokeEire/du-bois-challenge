@@ -8,35 +8,35 @@
   import { extent, max, min } from "d3-array";
   import { area, curveLinear, line } from 'd3-shape';
 
-  export let data; // This is the full data object from +page.js
+  let { data } = $props();
 
   // Access the CSV data correctly - it's at data.csvData, not data.data
-  $: csvData = data?.csvData || [];
+  let csvData = $derived(data?.csvData || []);
   //console.log('Raw CSV Data:', data); // Log the entire data object to see its structure
 
   //console.log("CSV Data:", data?.csvData); // This should now work
 
   // Convert string values to numbers for visualization
-  $: processedData = csvData.map((d) => ({
+  let processedData = $derived(csvData.map((d) => ({
     Year: +d.Year, // Convert to Date object
     Free: +d.Free/100.0, // Convert string to number
     Enslaved: +d.Slave/100.0, // Convert string to number
-  }));
+  })));
 
   //$: console.log("Processed Data:", processedData);
 
-  let width = 300;
-  $: height = width * 1;
+  let width = $state(300);
+  let height = $derived(width * 1);
 
   const padding = { top: 20, right: 30, bottom: 20, left: 30 };
 
-  $: yScale = scaleLinear()
+  let yScale = $derived(scaleLinear()
     .domain([0, 1])
-    .range([padding.top, height - padding.bottom]);
+    .range([padding.top, height - padding.bottom]));
 
-  $: xScale = scaleLinear()
+  let xScale = $derived(scaleLinear()
     .domain(extent(processedData, (d) => d.Year))
-    .range([padding.left, width - padding.right]);
+    .range([padding.left, width - padding.right]));
 
   //$: console.log("Extent of year: ", extent(processedData, (d) => d.Year))
   // Area functions stolen from data viz with svelte:
@@ -78,10 +78,10 @@
     return `${path}L${xScale(maxX)},${yScale(1)}L${xScale(minX)},${yScale(1)}Z`
   }
 
-  $: enslavedPath = generateEnslavedPath(processedData)
+  let enslavedPath = $derived(generateEnslavedPath(processedData))
 
-  $: freeArea = generateFreeArea(processedData, xScale, yScale)
-  $: enslavedArea = generateEnslavedArea(processedData, xScale, yScale)
+  let freeArea = $derived(generateFreeArea(processedData, xScale, yScale))
+  let enslavedArea = $derived(generateEnslavedArea(processedData, xScale, yScale))
 
   let hoveredData;
 </script>

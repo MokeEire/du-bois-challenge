@@ -1,7 +1,13 @@
 <script>
-    export let id = "circle";
-    export let width;
-    export let height;
+  /**
+   * @typedef {Object} Props
+   * @property {string} [id]
+   * @property {any} width
+   * @property {any} height
+   */
+
+  /** @type {Props} */
+  let { id = "circle", width, height } = $props();
 </script>
 <defs>
     <clipPath id={id}>

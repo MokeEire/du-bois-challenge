@@ -1,8 +1,8 @@
 <script>
   import ArticleCard from "$lib/components/ArticleCard.svelte";
-  export let plates;
+  let { plates } = $props();
 
-  $: sortedPlates = plates?.sort((a, b) => new Date(b.date) - new Date(a.date));//a.challenge - b.challenge);
+  let sortedPlates = $derived(plates?.sort((a, b) => new Date(b.date) - new Date(a.date)));//a.challenge - b.challenge);
 </script>
 
 <div class="grid">

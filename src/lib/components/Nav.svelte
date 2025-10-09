@@ -4,7 +4,7 @@
   import { page } from "$app/stores";
   // import { theme, themeChanger } from "$lib/stores";
 
-  $: pathname = $page.url.pathname;
+  let pathname = $derived($page.url.pathname);
 </script>
 
 <nav>

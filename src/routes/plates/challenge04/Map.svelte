@@ -7,7 +7,6 @@
   import rewind from "@turf/rewind";
   import routes from "$lib/data/routes-simple.json";
   import mapShapes from "$lib/data/mapShapes.json";
-  export let clip = true;
 
   let countries = topojson.feature(world, world.objects.countries).features;
   let featuresRewind = rewind(mapShapes, { reverse: true }).features.sort((a, b) => a.properties.type - b.properties.type || a.properties.opacity - b.properties.opacity);
@@ -26,17 +25,17 @@
   import { geoPath, geoEquirectangular } from "d3-geo";
   import { draw, fade, scale } from "svelte/transition";
 
-  let width = 600;
-  $: height = width / 2;
+  let width = $state(600);
+  let height = $derived(width / 2);
 
   // Projection function
-  $: projection = geoEquirectangular()
+  let projection = $derived(geoEquirectangular()
     .scale(height * 0.325) // geoEquirectangular
     .rotate([30, -2.5, 0]) // geoEquirectangular
-    .translate([width / 2, height / 2]); // Where the projection is centered
+    .translate([width / 2, height / 2])); // Where the projection is centered
 
   // Path generator
-  $: path = geoPath().projection(projection);
+  let path = $derived(geoPath().projection(projection));
 
   let georgiaCoords = [-81.0753, 32.0967];
 
@@ -44,12 +43,19 @@
   import Globe from "./Globe.svelte";
   import Clip from "./Clip.svelte";
   import GlobeText from "./GlobeText.svelte";
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [clip]
+   */
+
+  /** @type {Props} */
+  let { clip = true } = $props();
 </script>
 
 <div class="chart-container" bind:clientWidth={width}>
   <svg class="globes" {width} {height}>
     <!-- Globe -->
-    <!-- svelte-ignore a11y-click-events-have-key-events --->
+    <!-- svelte-ignore a11y_click_events_have_key_events --->
     <Globe cx={width * 0.25} {height} />
     <Globe cx={width * 0.75} {height} />
     {#if clip}
@@ -65,7 +71,7 @@
     <GlobeText {width} {height} {clip} />
     <!-- Countries -->
     {#each countries as country}
-      <!-- svelte-ignore a11y-click-events-have-key-events --->
+      <!-- svelte-ignore a11y_click_events_have_key_events --->
       <path
         class="country"
         d={path(country)}

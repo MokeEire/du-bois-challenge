@@ -8,8 +8,17 @@
   import Disclaimer from "$lib/components/Disclaimer.svelte";
   import "$lib/css/plate.css";
 
-  export let data;
-  export let title, description, date, challenge, plateNum, original, image;
+  let {
+    data,
+    title,
+    description,
+    date,
+    challenge,
+    plateNum,
+    original,
+    image,
+    children
+  } = $props();
 
   const theme = "github-light";
 
@@ -19,8 +28,8 @@
     image,
   };
 
-  $: recentPosts = data.plates;
-  $: actualDate = new Date(date);
+  let recentPosts = $derived(data.plates);
+  let actualDate = $derived(new Date(date));
 </script>
 
 <Seo {...seo} />
@@ -37,7 +46,7 @@
   <p class="date">{format(actualDate, "d MMM yyyy")}</p>
   <hr />
   <a class="original" target="_blank" href={original}>View the original</a>
-  <slot />
+  {@render children?.()}
 </article>
 
 <hr />

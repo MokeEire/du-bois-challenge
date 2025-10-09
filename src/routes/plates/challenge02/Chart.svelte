@@ -13,7 +13,7 @@
     import {fly} from "svelte/transition";
 
     //$: data = await d3.csv(csvData); // [{"Hello": "world"}, …]
-    let data = [];
+    let data = $state([]);
     onMount(async function() {
 		data = await csv('./challenge02/data.csv', (d) => ({
 			...d,
@@ -24,7 +24,7 @@
 		console.log(data);
 	});
   
-    let width = 600;
+    let width = $state(600);
     let height = 800;
   
     const margin = {
@@ -34,29 +34,29 @@
       left: 60,
     };
   
-    $: innerWidth = width - margin.left - margin.right;
+    let innerWidth = $derived(width - margin.left - margin.right);
     let innerHeight = height - margin.top - margin.bottom;
 
     const xTicks = [3, 2, 1, 0];
 	const yTicks = [1790, 1800, 1810, 1820, 1830, 1840, 1850, 1860, 1870];
 
-    $: xScale = scaleLinear()//.clamp(true)
+    let xScale = $derived(scaleLinear()//.clamp(true)
     .domain([0, 3]) // Input
-    .range([innerWidth, 0]); // Output
-    $: xScaleClamp = scaleLinear().clamp(true)
+    .range([innerWidth, 0])); // Output
+    let xScaleClamp = $derived(scaleLinear().clamp(true)
     .domain([0, 3]) // Input
-    .range([innerWidth, 0]); // Output
-    $: xScaleInterpolate = scaleLinear().interpolate(50, 100)
+    .range([innerWidth, 0])); // Output
+    let xScaleInterpolate = $derived(scaleLinear().interpolate(50, 100)
     .domain([0, 3]) // Input
-    .range([innerWidth, 0]); // Output
+    .range([innerWidth, 0])); // Output
 
     let yScale = scaleLinear()
     .domain([1790, 1871]) // Input
     .range([0, innerHeight]); // Output
   
-    $: pathFree = `M${data.map((d) => `${xScale(d.free > 3 ? 3: d.free)},${yScale(d.year > 1860 ? 1863 : d.year)}`).join('L')}`;
-    $: areaSlave = `M${xScale(3)},${yScale(1790)}L${xScale(0)},${yScale(1790)}L${xScale(0)},${yScale(1870)}L${xScale(3)},${yScale(1870)}Z`
-    $: areaFree = `${pathFree}L${xScale(3)},${yScale(1790)}L${xScale(0)},${yScale(1790)}Z`;
+    let pathFree = $derived(`M${data.map((d) => `${xScale(d.free > 3 ? 3: d.free)},${yScale(d.year > 1860 ? 1863 : d.year)}`).join('L')}`);
+    let areaSlave = $derived(`M${xScale(3)},${yScale(1790)}L${xScale(0)},${yScale(1790)}L${xScale(0)},${yScale(1870)}L${xScale(3)},${yScale(1870)}Z`)
+    let areaFree = $derived(`${pathFree}L${xScale(3)},${yScale(1790)}L${xScale(0)},${yScale(1790)}Z`);
     
     
   

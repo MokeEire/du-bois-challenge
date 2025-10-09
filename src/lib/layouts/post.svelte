@@ -3,8 +3,16 @@
   import Categories from "$lib/components/Categories.svelte";
   import { siteTitle } from "$lib/constants";
 
-  export let data;
-  export let title, description, date, categories, edit, image;
+  let {
+    data,
+    title,
+    description,
+    date,
+    categories,
+    edit,
+    image,
+    children
+  } = $props();
 
   const seo = {
     title: `${title} | ${siteTitle}`,
@@ -12,7 +20,7 @@
     image,
   };
 
-  $: recentPosts = data.posts
+  let recentPosts = $derived(data.posts)
 </script>
 
 <Seo {...seo} />
@@ -21,7 +29,7 @@
 <p class="date">{date}</p>
 <Categories {categories} />
 <img width="800" height="300" src={image} alt={title} />
-<slot />
+{@render children?.()}
 <p class="edit"><a href={edit} target="_blank">Edit this page</a></p>
 
 <style>

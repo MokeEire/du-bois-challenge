@@ -7,6 +7,13 @@
   import { isSidebarOpen } from "$lib/stores";
   import Header from "$lib/components/Header.svelte";
   import Footer from "$lib/components/Footer.svelte";
+  /**
+   * @typedef {Object} Props
+   * @property {import('svelte').Snippet} [children]
+   */
+
+  /** @type {Props} */
+  let { children } = $props();
 </script>
 
 <div class="wrapper overflow-hidden">
@@ -15,7 +22,7 @@
     <SidebarToggle />
     <Header />
     <article class="container">
-      <slot />
+      {@render children?.()}
     </article>
     <Footer sidebar={false} />
   </main>

@@ -1,9 +1,17 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { paginatedPosts } from "./paginatedPosts";
 
-  export let items = [];
-  export let currentPage = 1;
-  export let itemsPerPage = 3;
+  /**
+   * @typedef {Object} Props
+   * @property {any} [items]
+   * @property {number} [currentPage]
+   * @property {number} [itemsPerPage]
+   */
+
+  /** @type {Props} */
+  let { items = [], currentPage = $bindable(1), itemsPerPage = 3 } = $props();
 
   let numberOfPages = Math.ceil(items.length / itemsPerPage);
 
@@ -11,7 +19,9 @@
     return array.slice((page_number - 1) * page_size, page_number * page_size);
   };
 
-  $: $paginatedPosts = paginate(items, itemsPerPage, currentPage);
+  run(() => {
+    $paginatedPosts = paginate(items, itemsPerPage, currentPage);
+  });
 </script>
 
 <nav>
@@ -21,7 +31,7 @@
       <li>
         <button
           class:active={currentPage == index + 1}
-          on:click={() => (currentPage = index + 1)}>{index + 1}</button
+          onclick={() => (currentPage = index + 1)}>{index + 1}</button
         >
       </li>
     {/each}

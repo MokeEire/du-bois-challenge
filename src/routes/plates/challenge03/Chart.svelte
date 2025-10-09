@@ -6,36 +6,38 @@
   import { scaleLinear } from "d3-scale";
   import { max } from "d3-array";
 
-  export let data; // This is the full data object from +page.js
+  let { data } = $props();
 
   // Access the CSV data correctly - it's at data.csvData, not data.data
-  $: csvData = data?.csvData || [];
+  let csvData = $derived(data?.csvData || []);
   //console.log('Raw CSV Data:', data); // Log the entire data object to see its structure
 
   //console.log("CSV Data:", data?.csvData); // This should now work
 
   // Convert string values to numbers for visualization
-  $: processedData = csvData.map((d) => ({
+  let processedData = $derived(csvData.map((d) => ({
     Year: +d.Date, // Convert to Date object
     Land: +d.Land, // Convert string to number
-  }));
+  })));
 
   //$: console.log("Processed Data:", processedData);
 
-  let width = 300;
-  $: height = width * 1.2;
+  let width = $state(300);
+  let height = $derived(width * 1.2);
 
   const padding = { top: 20, right: 40, bottom: 20, left: 80 };
 
-  $: yScale = scaleLinear()
+  let yScale = $derived(scaleLinear()
     .domain([0, processedData.length])
-    .range([padding.top, height - padding.bottom]);
+    .range([padding.top, height - padding.bottom]));
 
-  $: xScale = scaleLinear()
+  let xScale = $derived(scaleLinear()
     .domain([0, max(processedData, (d) => d.Land)])
-    .range([padding.left, width - padding.right - padding.left]);
+    .range([padding.left, width - padding.right - padding.left]));
 
-  let hoveredData;
+  let hoveredYear = $state();
+  $inspect('Year: ', hoveredYear);
+
 </script>
 
 <div bind:clientWidth={width}>
@@ -53,21 +55,21 @@
         stroke-width="1"
         fill-opacity=".95"
         stroke-opacity=".5"
-        opacity={hoveredData ? (hoveredData == d ? 1 : 0.45) : 0.85}
+        opacity={hoveredYear ? (hoveredYear == d.Year ? 1 : 0.45) : 0.85}
         filter="url(#markerRed)"
         tabindex="0"
         in:fade
-        on:mouseover={() => {
-          hoveredData = d;
+        onmouseover={() => {
+          hoveredYear = d.Year;
         }}
-        on:focus={() => {
-          hoveredData = d;
+        onfocus={() => {
+          hoveredYear = d.Year;
         }}
-        on:mouseleave={() => {
-          hoveredData = null;
+        onmouseleave={() => {
+          hoveredYear = null;
         }}
-        on:focusout={() => {
-          hoveredData = null;
+        onfocusout={() => {
+          hoveredYear = null;
         }}
       />
       <text
@@ -77,17 +79,17 @@
         dx="-5"
         dy="9"
         opacity=".9"
-        on:mouseover={() => {
-          hoveredData = d;
+        onmouseover={() => {
+          hoveredYear = d.Year;
         }}
-        on:focus={() => {
-          hoveredData = d;
+        onfocus={() => {
+          hoveredYear = d.Year;
         }}
-        on:mouseleave={() => {
-          hoveredData = null;
+        onmouseleave={() => {
+          hoveredYear = null;
         }}
-        on:focusout={() => {
-          hoveredData = null;
+        onfocusout={() => {
+          hoveredYear = null;
         }}>{d.Year}</text
       >
       {#if (i === 0) | (i == processedData.length - 1)}
@@ -98,7 +100,8 @@
           dy="9"
           opacity=".9">{d.Land.toLocaleString()}</text
         >
-      {:else if hoveredData == d}
+      {/if}
+      {#if hoveredYear == d.Year}
         <text
           class="land"
           x={xScale(d.Land / 2)}
@@ -119,6 +122,7 @@
   rect {
     transition: opacity 500ms ease;
     padding: 2px;
+    cursor: pointer;
   }
   .year {
     font-weight: 100;
@@ -126,6 +130,7 @@
     dominant-baseline: middle;
     font-size: 1.1rem;
     opacity: 0.75;
+    cursor: pointer;
   }
   .land {
     text-anchor: start;

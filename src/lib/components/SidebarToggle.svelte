@@ -1,4 +1,6 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { isSidebarOpen } from "$lib/stores";
   import clickOutside from "$lib/utils/clickOutside";
   import Swipe from "$lib/components/Swipe.svelte";
@@ -10,25 +12,27 @@
     }
   };
 
-  let direction;
+  let direction = $state();
 
-  $: if (direction == "right") {
-    $isSidebarOpen = true;
-  } else if (direction == "left") {
-    $isSidebarOpen = false;
-  }
+  run(() => {
+    if (direction == "right") {
+      $isSidebarOpen = true;
+    } else if (direction == "left") {
+      $isSidebarOpen = false;
+    }
+  });
 </script>
 
 <div
   class="sidebar-toggle"
   use:clickOutside
-  on:click_outside={handleClickOutside}
+  onclick_outside={handleClickOutside}
 >
   <label for="check">
     <input type="checkbox" id="check" bind:checked={$isSidebarOpen} />
-    <span />
-    <span />
-    <span />
+    <span></span>
+    <span></span>
+    <span></span>
   </label>
 </div>
 <Swipe bind:direction />

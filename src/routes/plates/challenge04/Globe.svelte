@@ -1,11 +1,10 @@
 <script>
-    export let cx;
-    export let height;
+  let { cx, height } = $props();
 
-    $: radius = height / 2
+    let radius = $derived(height / 2)
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events --->
+<!-- svelte-ignore a11y_click_events_have_key_events --->
 <circle
   class="globe"
   stroke="black"
