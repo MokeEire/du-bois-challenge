@@ -30,7 +30,7 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
 
 <button on:click={onInput}><span class="mdi--restart"></span> Restart Animation</button>
 
-{#if show}
+
 
 <div class="plate">
   <div class="chart-title">
@@ -39,7 +39,9 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
     <span>By</span>
     <span>W.E. Burghardt Du Bois</span>
   </div>
+  {#if show}
   <Map />
+  {/if}
 <div class="legend">
       <div class="legend-item">
         <span>&#8803;</span>
@@ -64,7 +66,7 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
       >
     </p>
     </div>
-{/if}
+
 
 <h2>How it's made</h2>
 
