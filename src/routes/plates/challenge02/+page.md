@@ -11,7 +11,7 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
 ---
 
 <script>
-  import BarChart from './BarChart.svelte'
+  import Chart from './Chart.svelte'
 </script>
 
 <div class="plate">
@@ -19,7 +19,7 @@ original: https://github.com/ajstarks/dubois-data-portraits/blob/master/challeng
     <h1>Slaves and Free Negroes</h1>
   </div>
   <!-- Chart Goes here !-->
-  <BarChart />
+  <Chart />
 </div>
 
 
