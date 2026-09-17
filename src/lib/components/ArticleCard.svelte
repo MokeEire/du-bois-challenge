@@ -33,7 +33,7 @@
     flex-direction: column;
     flex-grow: 1;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
     border: 2px solid transparent;
     border-radius: 0.5rem;
     transition: all 0.3s ease;
@@ -49,6 +49,7 @@
     align-self: stretch;
     border-radius: 0.5rem 0.5rem 0 0;
     height: 300px;
+    background-color: var(--db-tan-light);
   }
 
   .card:hover {
@@ -64,9 +65,9 @@
 
   .card-img-inner {
     object-fit: cover;
+    object-position: top;
     width: 100%;
     height: 100%;
-    transform: translateY(15%)
   }
 
   .card-inner {

@@ -18,7 +18,16 @@
 
 <div class="wrapper overflow-hidden">
   <Sidebar />
-  <main class:show={$isSidebarOpen}>
+  <div
+    class="overlay"
+    class:show={$isSidebarOpen}
+    role="button"
+    tabindex={$isSidebarOpen ? 0 : -1}
+    aria-label="Close menu"
+    onclick={() => ($isSidebarOpen = false)}
+    onkeydown={(e) => (e.key === "Enter" || e.key === " ") && ($isSidebarOpen = false)}
+  ></div>
+  <main>
     <SidebarToggle />
     <Header />
     <article class="container">
@@ -43,15 +52,24 @@
 
   article {
     margin: 1rem auto;
-    
-  }
-  .show {
-    transform: translateX(18rem);
+
   }
 
-  @media screen and (max-width: 800px) {
-    .show {
-      transform: translateX(14rem);
-    }
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.4);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--duration-300) ease;
+  }
+
+  .overlay.show {
+    opacity: 1;
+    visibility: visible;
   }
 </style>
